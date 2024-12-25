@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service List</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .search-bar {
+            margin-top: 10px;
+            padding: 10px;
+            width: 50%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .service-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-table th,
+        .service-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .service-table th {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .service-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .service-table td:first-child,
+        .service-table td:nth-child(2) {
+            text-align: left;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .close-btn {
+            font-size: 24px;
+            color: #333;
+            float: right;
+            cursor: pointer;
+        }
+
+        .payment-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(to right, #007bff, #00c6ff);
+            border-radius: 10px;
+            color: #fff;
+        }
+
+        .payment-card h2 {
+            margin-bottom: 20px;
+        }
+
+        .payment-card label {
+            align-self: flex-start;
+            margin: 10px 0 5px;
+        }
+
+        .payment-card input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .pay-btn {
+            background-color: #ffcc00;
+            color: #333;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .pay-btn:hover {
+            background-color: #e6b800;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Please Upload The Required Documents to Clear the Objection</h1>
+            <input type="text" id="searchBar" placeholder="Search for a Name..." class="search-bar" onkeyup="searchTable()">
+        </header>
+
+        <table class="service-table">
+            <thead>
+                <tr>
+                    <th>Sl No.</th>
+                    <th>Applicant's Name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="serviceList">
+                <tr>
+                    <td>1</td>
+                    <td>Bikash Borah</td>
+                    <td>
+                        <button onclick="showServiceDetails('Objection...!', 'Please Upload scanned copy of application form of Caste Certificate.', '15 Days', '₹200')">View Details</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Pradumna Borah</td>
+                    <td>
+                        <button onclick="showServiceDetails('Objection...!', 'Please Upload scanned copy of application form of Caste Certicicate.', '15 Days', '₹200')">View Details</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Mohan Bora</td>
+                    <td>
+                        <button onclick="showServiceDetails('Objection...!', 'Please Upload Digital Copy Of Caste Certificate in Registration of Employment seeker in Employment Exchange.', 'Instant Approval', '₹200')">View Details</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Monjumoni Bora</td>
+                    <td>
+                        <button onclick="showServiceDetails('Objection...!', 'Please Upload Digital Copy Of Caste Certificate in Registration of Employment seeker in Employment Exchange.', 'Instant Approval', '₹200')">View Details</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Neha Deka</td>
+                    <td>
+                        <button onclick="showServiceDetails('Objection...!', 'Please Upload Digital Copy Of Caste Certificate in Registration of Employment seeker in Employment Exchange.', 'Instant Approval', '₹200')">View Details</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>Nupur Bora</td>
+                    <td>
+                        <button onclick="showServiceDetails('Objection...!', 'Please Upload scanned copy of application form of Caste Certicicate.', '15 Days', '₹200')">View Details</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>Joyshree Hatimuria</td>
+                    <td>
+                        <button onclick="showServiceDetails('Objection...!', 'Please Upload Digital Copy Of Caste Certificate in Registration of Employment seeker in Employment Exchange.', 'Instant Approval', '₹200')">View Details</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>Sanjukta Das</td>
+                    <td>
+                        <button onclick="showServiceDetails('Objection...!', 'Please Upload Digital Copy Of Caste Certificate in Registration of Employment seeker in Employment Exchange.', 'Instant Approval', '₹200')">View Details</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>Pronita Saikia</td>
+                    <td>
+                        <button onclick="showServiceDetails('Objection...!', 'Please Upload Digital Copy Of Caste Certificate in Registration of Employment seeker in Employment Exchange.', 'Instant Approval', '₹200')">View Details</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>Simran Gogoi</td>
+                    <td>
+                        <button onclick="showServiceDetails('Objection...!', 'Please Upload scanned copy of application form of Caste Certicicate.', '15 Days', '₹200')">View Details</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>Jodumoni Gogoi</td>
+                    <td>
+                        <button onclick="showServiceDetails('Objection...!', 'Please Upload Digital Copy Of Caste Certificate in Registration of Employment seeker in Employment Exchange.', 'Instant Approval', '₹200')">View Details</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>Madhurima Bora</td>
+                    <td>
+                        <button onclick="showServiceDetails('Objection...!', 'Please Upload Digital Copy Of Caste Certificate in Registration of Employment seeker in Employment Exchange.', 'Instant Approval', '₹200')">View Details</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>Pronita Saikia</td>
+                    <td>
+                        <button onclick="showServiceDetails('Objection...!', 'Please Upload Digital Copy Of Caste Certificate in Registration of Employment seeker in Employment Exchange.', 'Instant Approval', '₹200')">View Details</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>14</td>
+                    <td>Apurba Prodhan</td>
+                    <td>
+                        <button onclick="showServiceDetails('Objection...!', 'Plase Do Re-registration of employment seeker in Employment Exchange', 'Instant Approval', '₹200')">View Details</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>15</td>
+                    <td>Junmoni Thengal</td>
+                    <td>
+                        <button onclick="showServiceDetails('Objection...!', 'Please Upload Digital Copy Of Caste Certificate in Registration of Employment seeker in Employment Exchange.', 'Instant Approval', '₹200')">View Details</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>16</td>
+                    <td>Pranav Tanti</td>
+                    <td>
+                        <button onclick="showServiceDetails('Objection...!', 'Please Upload Digital Copy Of Caste Certificate in Registration of Employment seeker in Employment Exchange.', 'Instant Approval', '₹200')">View Details</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>17</td>
+                    <td>Jintimoni Bora</td>
+                    <td>
+                        <button onclick="showServiceDetails('Objection...!', 'Please Upload Digital Copy Of Caste Certificate in Registration of Employment seeker in Employment Exchange.', 'Instant Approval', '₹200')">View Details</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>18</td>
+                    <td>Niki Gogoi</td>
+                    <td>
+                        <button onclick="showServiceDetails('Objection...!', 'Please Upload Digital Copy Of Caste Certificate in Registration of Employment seeker in Employment Exchange.', 'Instant Approval', '₹200')">View Details</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td>Mitu Pavan Bora</td>
+                    <td>
+                        <button onclick="showServiceDetails('Objection...!', 'Please Upload Digital Copy Of Caste Certificate in Registration of Employment seeker in Employment Exchange.', 'Instant Approval', '₹200')">View Details</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>20</td>
+                    <td>Chandan Das</td>
+                    <td>
+                        <button onclick="showServiceDetails('Objection...!', 'Please Upload Digital Copy Of Caste Certificate in Registration of Employment seeker in Employment Exchange.', 'Instant Approval', '₹200')">View Details</button>
+                    </td>
+                </tr>
+
+                <!-- Add other services similarly -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal for service details -->
+    <div id="serviceModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div class="service-card">
+                <h2 id="serviceTitle"></h2>
+                <p><strong>Required Documents:</strong> <span id="serviceDocuments"></span></p>
+                <p><strong>Stipulated Time Limit:</strong> <span id="stipulatedTime"></span></p>
+                <p><strong>Charge:</strong> <span id="servicePrice"></span></p>
+                <button class="proceed-btn" onclick="showPaymentModal()">Proceed</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closePaymentModal()">&times;</span>
+            <div class="payment-card">
+                <h2>Payment Details</h2>
+                <label for="debitCard">Debit Card Number:</label>
+                <input type="text" id="debitCard" placeholder="Enter Card Number">
+                <label for="expiryDate">Expiry Date:</label>
+                <input type="text" id="expiryDate" placeholder="MM/YY">
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" placeholder="CVV">
+                <button class="pay-btn" onclick="processPayment()">Pay ₹200</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Search table based on input
+        function searchTable() {
+            var input = document.getElementById('searchBar');
+            var filter = input.value.toUpperCase();
+            var table = document.getElementById('serviceList');
+            var tr = table.getElementsByTagName('tr');
+            for (var i = 0; i < tr.length; i++) {
+                var td = tr[i].getElementsByTagName('td')[1]; // Search in the second column (Name)
+                if (td) {
+                    var txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        // Function to show service details
+        function showServiceDetails(title, documents, time, price) {
+            document.getElementById('serviceTitle').innerText = title;
+            document.getElementById('serviceDocuments').innerText = documents;
+            document.getElementById('stipulatedTime').innerText = time;
+            document.getElementById('servicePrice').innerText = price;
+            document.getElementById('serviceModal').style.display = 'flex';
+        }
+
+        // Function to close the service details modal
+        function closeModal() {
+            document.getElementById('serviceModal').style.display = 'none';
+        }
+
+        // Function to show payment modal
+        function showPaymentModal() {
+            document.getElementById('paymentModal').style.display = 'flex';
+        }
+
+        // Function to close payment modal
+        function closePaymentModal() {
+            document.getElementById('paymentModal').style.display = 'none';
+        }
+
+        // Function to simulate payment processing and redirect
+        function processPayment() {
+            alert('Payment successful! Service Booked.');
+            closePaymentModal();
+            // Redirect to the desired link in a new tab
+            window.open('https://sewasetu.assam.gov.in/', '_blank');
+        }
+    </script>
+</body>
+
+</html>
